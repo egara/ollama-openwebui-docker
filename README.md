@@ -2,10 +2,15 @@
 A very simple integration to run ollama and open-webui together locally using Docker
 
 ## What do you need to run the system?
- Just install [Docker](https://www.docker.com/) and [Docker compose](https://docs.docker.com/compose/), clone this repo and type:
+Just install [Docker](https://www.docker.com/) and [Docker compose](https://docs.docker.com/compose/), clone this repo and type:
 
      cd ollama-openwebui-docker
      docker compose up -d
+
+## How to access to the web UI?
+Just open a web browser and type
+
+    http://localhost:3000
 
 ## Ollama
 It is the easiest way to run LLMs locally. Please check [the official website for more information and documentation](https://ollama.com/).
