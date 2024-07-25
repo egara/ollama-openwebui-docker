@@ -11,6 +11,19 @@ services:
     volumes:
       - ./data/ollama:/root/.ollama
     tty: true
+    # NVIDIA - BEGIN
+    # Uncomment this part if you have a NVIDIA graphics card and
+    # you want to use it with Ollama
+    # For more information https://hub.docker.com/r/ollama/ollama and check
+    # Nvidia GPU
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    # NVIDIA - END
     restart: unless-stopped
 
   ollama-webui:
