@@ -18,4 +18,4 @@ It is the easiest way to run LLMs locally. Please check [the official website fo
 ## Open-WebUI
 It is one of the most important and complete open source web UIs out there to manage and interact with the LLMs run by Ollama. For more information and documentatio, please check [the official website](https://openwebui.com/)
 
-> It is necessary to create an account before using open-webUI
+> It is necessary to create an account before using open-webUI but I think it stored only locally.
