@@ -1,0 +1,30 @@
+services:
+  ollama:
+    # https://hub.docker.com/r/ollama/ollama
+    # https://github.com/ollama/ollama
+    image: ollama/ollama:latest
+    pull_policy: always
+    container_name: ollama
+    # Uncomment below to expose Ollama API outside the container stack
+    #ports:
+    #  - 11434:11434
+    volumes:
+      - ./data/ollama:/root/.ollama
+    tty: true
+    restart: unless-stopped
+
+  ollama-webui:
+    # https://github.com/open-webui/open-webui
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    depends_on:
+      - ollama
+    ports:
+      - 3000:8080
+    environment:
+      - "OLLAMA_BASE_URL=http://ollama:11434"
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - ./data/open-webui:/app/backend/data
+    restart: unless-stopped
