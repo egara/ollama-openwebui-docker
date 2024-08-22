@@ -3,6 +3,14 @@ services:
     # https://hub.docker.com/r/ollama/ollama
     # https://github.com/ollama/ollama
     image: ollama/ollama:latest
+    # AMD - BEGIN
+    # Comment the NVIDIA part and the image above
+    # Uncomment the lines below
+    #image: ollama/ollama:rocm
+    #devices:
+    #  - /dev/kfd
+    #  - /dev/dri
+    # AMD - END
     pull_policy: always
     container_name: ollama
     # Uncomment below to expose Ollama API outside the container stack
