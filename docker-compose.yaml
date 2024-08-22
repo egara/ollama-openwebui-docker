@@ -2,14 +2,18 @@ services:
   ollama:
     # https://hub.docker.com/r/ollama/ollama
     # https://github.com/ollama/ollama
-    image: ollama/ollama:latest
+    #image: ollama/ollama:latest
     # AMD - BEGIN
     # Comment the NVIDIA part and the image above
     # Uncomment the lines below
-    #image: ollama/ollama:rocm
-    #devices:
-    #  - /dev/kfd
-    #  - /dev/dri
+    image: ollama/ollama:0.3.7-rc5-rocm
+    devices:
+      - /dev/kfd
+      - /dev/dri
+    environment:
+    #  - OLLAMA_DEBUG=1
+      - HSA_OVERRIDE_GFX_VERSION=10.3.0
+      - ROCR_VISIBLE_DEVICES=1
     # AMD - END
     pull_policy: always
     container_name: ollama
@@ -24,13 +28,13 @@ services:
     # you want to use it with Ollama
     # For more information https://hub.docker.com/r/ollama/ollama and check
     # Nvidia GPU
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
+    #deploy:
+    #  resources:
+    #    reservations:
+    #      devices:
+    #        - driver: nvidia
+    #          count: all
+    #          capabilities: [gpu]
     # NVIDIA - END
     restart: unless-stopped
 
