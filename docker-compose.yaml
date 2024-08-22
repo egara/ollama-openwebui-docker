@@ -6,6 +6,8 @@ services:
     # AMD - BEGIN
     # Comment the NVIDIA part and the image above
     # Uncomment the lines below
+    # Note: There is a bug in ollama:rocm image (20240824)
+    # and now it doesn't work with my GPU AMD 6600 RTX
     image: ollama/ollama:0.3.7-rc5-rocm
     devices:
       - /dev/kfd
