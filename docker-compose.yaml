@@ -25,7 +25,7 @@ services:
     volumes:
       - ./data/ollama:/root/.ollama
     tty: true
-    # NVIDIA - BEGIN
+    # NVIDIA - BEGIN - OLD
     # Uncomment this part if you have a NVIDIA graphics card and
     # you want to use it with Ollama
     # For more information https://hub.docker.com/r/ollama/ollama and check
@@ -37,7 +37,24 @@ services:
     #        - driver: nvidia
     #          count: all
     #          capabilities: [gpu]
-    # NVIDIA - END
+    # NVIDIA - END - OLD
+
+    # NVIDIA - BEGIN - NEW (ONLY FOR NIXOS?)
+    # Uncomment this part if you have a NVIDIA graphics card and
+    # you want to use it with Ollama
+    # For more information https://hub.docker.com/r/ollama/ollama and check
+    # Nvidia GPU
+    # For specific information about NixOS configuration check
+    # https://nixos.org/manual/nixpkgs/unstable/#using-docker-compose
+    #deploy:
+    #  resources:
+    #    reservations:
+    #      devices:
+    #      - driver: cdi
+    #        device_ids:
+    #        - nvidia.com/gpu=all
+    #        capabilities: [gpu]
+    # NVIDIA - END - NEW (ONLY FOR NIXOS?)
     restart: unless-stopped
 
   ollama-webui:
