@@ -2,20 +2,20 @@ services:
   ollama:
     # https://hub.docker.com/r/ollama/ollama
     # https://github.com/ollama/ollama
-    #image: ollama/ollama:latest
+    image: ollama/ollama:latest
     # AMD - BEGIN
     # Comment the NVIDIA part and the image above
     # Uncomment the lines below
     # Note: There is a bug in ollama:rocm image (20240824)
     # and now it doesn't work with my GPU AMD 6600 RTX
-    image: ollama/ollama:0.3.7-rc5-rocm
-    devices:
-      - /dev/kfd
-      - /dev/dri
-    environment:
+    #image: ollama/ollama:0.3.7-rc5-rocm
+    #devices:
+    #  - /dev/kfd
+    #  - /dev/dri
+    #environment:
     #  - OLLAMA_DEBUG=1
-      - HSA_OVERRIDE_GFX_VERSION=10.3.0
-      - ROCR_VISIBLE_DEVICES=1
+    #  - HSA_OVERRIDE_GFX_VERSION=10.3.0
+    #  - ROCR_VISIBLE_DEVICES=1
     # AMD - END
     pull_policy: always
     container_name: ollama
@@ -46,14 +46,14 @@ services:
     # Nvidia GPU
     # For specific information about NixOS configuration check
     # https://nixos.org/manual/nixpkgs/unstable/#using-docker-compose
-    #deploy:
-    #  resources:
-    #    reservations:
-    #      devices:
-    #      - driver: cdi
-    #        device_ids:
-    #        - nvidia.com/gpu=all
-    #        capabilities: [gpu]
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: cdi
+            device_ids:
+            - nvidia.com/gpu=all
+            capabilities: [gpu]
     # NVIDIA - END - NEW (ONLY FOR NIXOS?)
     restart: unless-stopped
 
