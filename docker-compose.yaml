@@ -16,8 +16,8 @@ services:
     pull_policy: always
     container_name: ollama
     # Uncomment below to expose Ollama API outside the container stack
-    #ports:
-    #  - 11434:11434
+    ports:
+      - 0.0.0.0:11434:11434
     volumes:
       - ./data/ollama:/root/.ollama
     tty: true
